@@ -148,14 +148,16 @@ module axi_master_controller_a4rwd32(clk, rst, sram_addr, sram_wdata, sram_wen, 
             ridx <= 0;
             st <= `S_ADDR_WAIT;
             if (wen) begin
-              ARVALID <= 1;
-              ARADDR <= addr;
-              ARLEN <= len;
-            end else begin
               AWVALID <= 1;
               AWADDR <= addr;
               AWLEN <= len;
+              AWSIZE <= 2;
               wmax <= len;
+            end else begin
+              ARVALID <= 1;
+              ARADDR <= addr;
+              ARLEN <= len;
+              ARSIZE <= 2;
             end
           end
         end
